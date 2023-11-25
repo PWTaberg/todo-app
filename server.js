@@ -5,11 +5,15 @@ let sanitizeHTML = require('sanitize-html');
 let app = express();
 let db;
 
+//dbUser , dbPassword
+let dbUser;
+let dbPassword;
+
 app.use(express.static('public'));
 
 async function getDbConnection() {
 	let client = new MongoClient(
-		'mongodb+srv://todoAppUser:lamme30@pwcluster.c4wqj.mongodb.net/todoApp?retryWrites=true&w=majority'
+		`mongodb+srv://${dbUser}:${dbPassword}@pwcluster.c4wqj.mongodb.net/todoApp?retryWrites=true&w=majority`
 	);
 	await client.connect();
 	db = client.db();
